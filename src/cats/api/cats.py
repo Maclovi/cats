@@ -53,8 +53,9 @@ async def add(
     try:
         await service.add(cat.to_model())
         return {"message": "cat added"}
-    except Exception:
-        raise HTTPException(  # noqa: B904
+    except Exception as e:
+        print(e)
+        raise HTTPException(
             status_code=status.HTTP_409_CONFLICT, detail="cat already exists"
         )
 
